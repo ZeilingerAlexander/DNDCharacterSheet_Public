@@ -1,4 +1,4 @@
-# WpfTestingObjectLiterals121222022
+# DNDCharacterSheet_Public
 This Program Allows the User to create a Character Sheet with basic DND Rules applying.
 The Application will automaticly do the math for everything for you, you just need to enter your stats.
 You can also save the Program by Clicking save or Load a Sheet of another Person with Load
