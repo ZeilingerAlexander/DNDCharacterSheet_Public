@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>DND_CharacterSheet_Zeilinger</AssemblyName>
+    <ApplicationIcon>7e6243c8c8b51bd65bcd6f455f198073.ico</ApplicationIcon>
+    <RootNamespace>DND_CharacterSheet_Zeilinger</RootNamespace>
+    <Authors>Alexander Zeilinger</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="7e6243c8c8b51bd65bcd6f455f198073.jpg" />
+    <None Remove="D100.jpg" />
+    <None Remove="F32Y0FVJ8F5Q3W5.png" />
+    <None Remove="Screenshot 2022-12-05 101845.png" />
+    <None Remove="Unbenannt.png" />
+    <None Remove="Y2Mate.is - DVD logo video on VHS on YouTube-oa_aKwMIJOY-360p-1654798226204.mp4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="7e6243c8c8b51bd65bcd6f455f198073.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+</Project>

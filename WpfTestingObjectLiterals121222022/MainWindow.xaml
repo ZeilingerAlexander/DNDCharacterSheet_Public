@@ -1,0 +1,508 @@
+﻿<Window x:Class="WpfTestingObjectLiterals121222022.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTestingObjectLiterals121222022"
+        mc:Ignorable="d"
+        Title="DND Character Sheet" Height="600" Width="800"
+        ResizeMode="NoResize">
+    <Grid Background="#FFD0D0D0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="188*"/>
+            <ColumnDefinition Width="193*"/>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="72*"/>
+            <ColumnDefinition Width="55*"/>
+            <ColumnDefinition Width="219*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="62*"/>
+            <RowDefinition Height="62*"/>
+            <RowDefinition Height="187*"/>
+            <RowDefinition Height="164*"/>
+        </Grid.RowDefinitions>
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="/Unbenannt.png"/>
+        </Grid.Background>-->
+        <!--- Saving Throws-->
+        <StackPanel Grid.Row="2" Grid.RowSpan="2" Margin="0,4,0,0">
+            <DockPanel Margin="0,0,0,5">
+                <DockPanel>
+                    <CheckBox x:Name="SaveStrCheck" MinWidth="31" IsChecked="{Binding Path=Sav_Strength}" Background="#FFA0D2EC"/>
+                    <TextBlock Text="Str" TextAlignment="Center" MinWidth="31"/>
+                    <TextBlock Text="{Binding Path=Display_Sav_Strength}" x:Name="SaveStr" MinWidth="31" MouseLeftButtonDown="RollD20SavingThrow" />
+                </DockPanel>
+                <DockPanel>
+                    <CheckBox x:Name="SaveIntCheck" MinWidth="31" IsChecked="{Binding Path=Sav_Intelligence}"  Background="#FFA0D2EC"/>
+                    <TextBlock Text="Int" TextAlignment="Center" MinWidth="31"/>
+                    <TextBlock Text="{Binding Path=Display_Sav_Intelligence}" x:Name="SaveInt" MinWidth="31" MouseLeftButtonDown="RollD20SavingThrow" />
+                </DockPanel>
+            </DockPanel>
+            <DockPanel Margin="0,5,0,5">
+                <DockPanel>
+                    <CheckBox x:Name="SaveDexCheck" MinWidth="31" IsChecked="{Binding Path=Sav_Dexterity}" Background="#FFA0D2EC"/>
+                    <TextBlock Text="Dex" TextAlignment="Center" MinWidth="31"/>
+                    <TextBlock Text="{Binding Path=Display_Sav_Dexterity}" x:Name="SaveDex" MinWidth="31" MouseLeftButtonDown="RollD20SavingThrow" />
+                </DockPanel>
+                <DockPanel>
+                    <CheckBox x:Name="SaveWisCheck" MinWidth="31" IsChecked="{Binding Path=Sav_Wisdom}" Background="#FFA0D2EC"/>
+                    <TextBlock Text="Wis" TextAlignment="Center" MinWidth="31"/>
+                    <TextBlock Text="{Binding Path=Display_Sav_Wisdom}" x:Name="SaveWis" MinWidth="31" MouseLeftButtonDown="RollD20SavingThrow" />
+                </DockPanel>
+            </DockPanel>
+            <DockPanel Margin="0,5,0,0">
+                <DockPanel>
+                    <CheckBox x:Name="SaveConCheck" MinWidth="31" IsChecked="{Binding Path=Sav_Constitution}" Background="#FFA0D2EC"/>
+                    <TextBlock Text="Con" TextAlignment="Center" MinWidth="31"/>
+                    <TextBlock Text="{Binding Path=Display_Sav_Constitution}" x:Name="SaveCon" MinWidth="31" MouseLeftButtonDown="RollD20SavingThrow"/>
+                </DockPanel>
+                <DockPanel>
+                    <CheckBox x:Name="SaveChaCheck" MinWidth="31" IsChecked="{Binding Path=Sav_Charisma}" Background="#FFA0D2EC"/>
+                    <TextBlock Text="Cha" TextAlignment="Center" MinWidth="31"/>
+                    <TextBlock Text="{Binding Path=Display_Sav_Charisma}" x:Name="SaveCha" MinWidth="31" MouseLeftButtonDown="RollD20SavingThrow"/>
+                </DockPanel>
+            </DockPanel>
+            <TextBlock TextAlignment="Center" Text="Saving Throws"/>
+        </StackPanel>
+        <!-- Skills Proficincy Walking Speed and Inspiration
+        The whole Thing Inside Dockpanel with fixed Min Widths on each Stackpanel which Contains everything else
+        if u see any -2 or weird not normal margins these are because i had to align stuff this counts for whole document in general, just dont change them or you will mess things up
+        also be noted to not add any grid rows or collumns becase all the panels are based on them, you can try to change them but u need to change all the header code from panels-->
+        <DockPanel Grid.Row="1" Grid.ColumnSpan="5" Margin="0,15,0,0">
+            <StackPanel MinWidth="64.5">
+                <TextBlock Text="Strength" TextAlignment="Center"/>
+                <TextBlock x:Name="Strength" Text="{Binding Path=Display_Strength}" TextAlignment="Center"/>
+                <TextBox x:Name="StrengthEntered" Text="{Binding Path=Strength}" TextAlignment="Center" Background="#FFA0D2EC"/>
+            </StackPanel>
+            <StackPanel MinWidth="64.5">
+                <TextBlock Text="Dexterity" TextAlignment="Center"/>
+                <TextBlock x:Name="Dexterity" Text="{Binding Path=Display_Dexterity}" TextAlignment="Center"/>
+                <TextBox x:Name="DexterityEntered" Text="{Binding Path=Dexterity}" TextAlignment="Center" Background="#FFA0D2EC"/>
+            </StackPanel>
+            <StackPanel MinWidth="64.5">
+                <TextBlock Text="Constitution" TextAlignment="Center"/>
+                <TextBlock x:Name="Constitution" Text="{Binding Path=Display_Constitution}" TextAlignment="Center"/>
+                <TextBox x:Name="ConstitutionEntered" Text="{Binding Path=Constituation}" TextAlignment="Center" Background="#FFA0D2EC"/>
+            </StackPanel>
+            <StackPanel MinWidth="64.5">
+                <TextBlock Text="Intelligence" TextAlignment="Center"/>
+                <TextBlock x:Name="Intelligence" Text="{Binding Path=Display_Intelligence}" TextAlignment="Center"/>
+                <TextBox x:Name="IntelligenceEntered" Text="{Binding Path=Intelligence}" TextAlignment="Center" Background="#FFA0D2EC"/>
+            </StackPanel>
+            <StackPanel MinWidth="64.5">
+                <TextBlock Text="Wisdom" TextAlignment="Center"/>
+                <TextBlock x:Name="Wisdom" Text="{Binding Path=Display_Wisdom}" TextAlignment="Center"/>
+                <TextBox x:Name="WisdomEntered" Text="{Binding Path=Wisdom}" TextAlignment="Center" Background="#FFA0D2EC"/>
+            </StackPanel>
+            <StackPanel MinWidth="64.5">
+                <TextBlock Text="Charisma" TextAlignment="Center"/>
+                <TextBlock x:Name="Charisma" Text="{Binding Path=Display_Charisma}" TextAlignment="Center"/>
+                <TextBox x:Name="CharismaEntered" Text="{Binding Path=Charisma}" TextAlignment="Center" Background="#FFA0D2EC"/>
+            </StackPanel>
+            <StackPanel MinWidth="64.5">
+                <TextBlock Text="Proficiency" TextAlignment="Center"/>
+                <TextBox x:Name="Proficiency" Text="{Binding Path=ProficiencyBonus}" TextAlignment="Center" Background="#FFA0D2EC"/>
+                <TextBlock Text="Bonus" TextAlignment="Center"/>
+            </StackPanel>
+            <StackPanel MinWidth="64.5">
+                <TextBlock Text="Walking" TextAlignment="Center"/>
+                <DockPanel>
+                    <TextBox x:Name="Speed" Text="{Binding Path=WalkingSpeed}" TextAlignment="Center" Margin="30,0,0,0" Background="#FFA0D2EC"/>
+                    <TextBlock Text="ft." TextAlignment="Center"/>
+                </DockPanel>
+                <TextBlock Text="Speed" TextAlignment="Center"/>
+            </StackPanel>
+            <StackPanel MinWidth="64.5">
+                <CheckBox x:Name="Inspiration" IsChecked="{Binding Path=Inspired}" HorizontalAlignment="Center" Margin="2,0,2,0" Background="#FFA0D2EC"/>
+                <TextBlock Text="Inspirtn" TextAlignment="Center"/>
+            </StackPanel>
+        </DockPanel>
+        <!-- Hit Points -->
+        <StackPanel Grid.Row="1" Grid.Column="5" Margin="0,15,0,0">
+            <DockPanel>
+                <TextBlock Text="Current" MinWidth="73" TextAlignment="Center"/>
+                <TextBlock Text="Max" MinWidth="73" TextAlignment="Center"/>
+                <TextBlock Text="Temp" MinWidth="73" TextAlignment="Center"/>
+            </DockPanel>
+            <DockPanel>
+                <TextBox x:Name="CurrentHP" Text="{Binding Path=Hp_Current}" TextAlignment="Center" MinWidth="73" Background="#FFA0D2EC"/>
+                <TextBox x:Name="MaxHP" Text="{Binding Path=Hp_Max}" TextAlignment="Center" MinWidth="73" Background="#FFA0D2EC"/>
+                <TextBox x:Name="TempHP" Text="{Binding Path=Hp_Temp}" TextAlignment="Center" MinWidth="73" Background="#FFA0D2EC"/>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Hit Points" TextAlignment="Center" Margin="0,-3,0,0"/>
+            </DockPanel>
+        </StackPanel>
+        <!--Skills-->
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Margin="0,77,0,127" MinHeight="311">
+            <!--Again using Margins on Mod to get the wanted looks-->
+            <DockPanel>
+                <TextBlock Text="Prof" TextAlignment="Center" Margin="0,0,5,0"/>
+                <TextBlock Text="Mod" TextAlignment="Center"/>
+                <TextBlock Text="Skill" TextAlignment="Center" Margin="10,0,10,0"/>
+                <TextBlock Text="Bonus" TextAlignment="Right" Margin="0,0,20,0"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Acrobatics}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Dex" TextAlignment="Left" Margin="10,0,5,0"/>
+                <TextBlock Text="Acrobatics" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusAcrobatics" Text="{Binding Path=Display_Prof_Acrobatics}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_AnimalHandling}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Wis" TextAlignment="Left" Margin="10,0,5,0"/>
+                <TextBlock Text="Animal Handling" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusAnimalHandling"  Text="{Binding Path=Display_Prof_AnimalHandling}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Arcana}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Int" TextAlignment="Left" Margin="10,0,10,0"/>
+                <TextBlock Text="Arcana" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusArcana"  Text="{Binding Path=Display_Prof_Arcana}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Athletics}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Str" TextAlignment="Left" Margin="10,0,10,0"/>
+                <TextBlock Text="Athletics" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusAthletics"  Text="{Binding Path=Display_Prof_Athletics}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Deception}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Cha" TextAlignment="Left" Margin="10,0,3,0"/>
+                <TextBlock Text="Deception" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusDeception"  Text="{Binding Path=Display_Prof_Deception}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_History}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Int" TextAlignment="Left" Margin="10,0,10,0"/>
+                <TextBlock Text="History" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusHistory"  Text="{Binding Path=Display_Prof_History}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Insight}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Wis" TextAlignment="Left" Margin="10,0,5,0"/>
+                <TextBlock Text="Insight" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusInsight"  Text="{Binding Path=Display_Prof_Insight}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Intimidation}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Cha" TextAlignment="Left" Margin="10,0,4,0"/>
+                <TextBlock Text="Intimidation" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusIntimidation"  Text="{Binding Path=Display_Prof_Intimidation}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Investigation}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Int" TextAlignment="Left" Margin="10,0,10,0"/>
+                <TextBlock Text="Investigation" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusInvestigation"  Text="{Binding Path=Display_Prof_Investigation}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Medicine}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Wis" TextAlignment="Left" Margin="10,0,5,0"/>
+                <TextBlock Text="Medicine" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusMedicine"  Text="{Binding Path=Display_Prof_Medicine}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Nature}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Int" TextAlignment="Left" Margin="10,0,10,0"/>
+                <TextBlock Text="Nature" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusNature"  Text="{Binding Path=Display_Prof_Nature}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Perception}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Wis" TextAlignment="Left" Margin="10,0,5,0"/>
+                <TextBlock Text="Perception" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusPerception"  Text="{Binding Path=Display_Prof_Perception}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Performance}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Cha" TextAlignment="Left" Margin="10,0,5,0"/>
+                <TextBlock Text="Performance" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusPerformance"  Text="{Binding Path=Display_Prof_Performance}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Persuasion}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Cha" TextAlignment="Left" Margin="10,0,5,0"/>
+                <TextBlock Text="Persuasion" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusPersuasion"  Text="{Binding Path=Display_Prof_Persuasion}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Religion}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Int" TextAlignment="Left" Margin="10,0,10,0"/>
+                <TextBlock Text="Religion" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusReligion"  Text="{Binding Path=Display_Prof_Religion}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_SleightOfHand}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Dex" TextAlignment="Left" Margin="10,0,5,0"/>
+                <TextBlock Text="Sleight of Hand" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusSleightOfHand"  Text="{Binding Path=Display_Prof_SleightOfHand}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Stealth}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Dex" TextAlignment="Left" Margin="10,0,5,0"/>
+                <TextBlock Text="Stealth" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusStealth"  Text="{Binding Path=Display_Prof_Stealth}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=Prof_Survival}" Background="#FFA0D2EC"/>
+                <TextBlock Text="Wis" TextAlignment="Left" Margin="10,0,5,0"/>
+                <TextBlock Text="Survival" TextAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock x:Name="SkillBonusSurvival"  Text="{Binding Path=Display_Prof_Survival}" TextAlignment="Right" DockPanel.Dock="Right" Margin="0,0,20,0" MouseLeftButtonDown="RollD20Check"/>
+            </DockPanel>
+        </StackPanel>
+        <!--Inventory Background Notes-->
+        <TabControl Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="4" x:Name="TabControlForInvBackNotes" Margin="0,46,0,0" Background="#FFA0D2EC" BorderBrush="#FF9746DE" TabStripPlacement="Bottom">
+            <TabItem Header="Inventory">
+                <ScrollViewer MaxWidth="450" Background="#FFD0D0D0">
+                    <StackPanel MaxWidth="390">
+                        <Button x:Name="AddEntryBut" Command="{Binding Path=AddItemCMD}" Content="Add New Entry" Background="#FFBBA0EC"/>
+                        <DockPanel>
+                            <TextBlock Text="Name" Margin="0,0,30,0"/>
+                            <TextBox x:Name="ItemsName" Text="{Binding Path=ItemCurrent_Name}" Background="#FFA0D2EC"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBlock Text="Description"  Margin="0,0,1.5,0"/>
+                            <TextBox x:Name="ItemsDescription" Text="{Binding Path=ItemCurrent_Description}" Background="#FFA0D2EC"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBlock Text="Amount"  Margin="0,0,19,0"/>
+                            <TextBox x:Name="ItemsAmount" Text="{Binding Path=ItemCurrent_Amount}" Background="#FFA0D2EC"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBlock Text="Weight / 1"  Margin="0,0,6,0"/>
+                            <TextBox x:Name="ItemsWeight" Text="{Binding Path=ItemCurrent_Weight}" Background="#FFA0D2EC"/>
+                        </DockPanel>
+                        <!--Info about Items-->
+                        <DockPanel>
+                            <TextBlock Margin="0,0,3,0">Total Items:</TextBlock>
+                            <TextBlock x:Name="TotalItems" Text="{Binding Path=ItemTotalAmount}" MinWidth="20"></TextBlock>
+                            <TextBlock Margin="0,0,3,0">Total Weight:</TextBlock>
+                            <TextBlock x:Name="TotalWeight" Text="{Binding Path=ItemTotalWeight}" MinWidth="20"></TextBlock>
+                        </DockPanel>
+                        <Button x:Name="DeleteEntryBut" Command="{Binding Path=DelItemCMD}">Delete Entry</Button>
+                        <!--Inventory-->
+                        <ListView x:Name="Inventory" Focusable="True" ItemsSource="{Binding Path=Items}" SelectedItem="{Binding Path=SelectedItem}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" Width="100"/>
+                                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Path=Description}" Width="100"/>
+                                    <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Path=Amount}" Width="100"/>
+                                    <GridViewColumn Header="Weight/1" DisplayMemberBinding="{Binding Path=Weight}" Width="100"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Notes" x:Name="NotesBox">
+                <TextBox x:Name="Notes" Text="{Binding Path=Notes}" TextWrapping="Wrap" Background="#FFD0D0D0"/>
+            </TabItem>
+            <TabItem Header="Character Information">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="#FFD0D0D0" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <StackPanel Background="#FFD0D0D0">
+                    <DockPanel>
+                        <TextBlock Text="Name" Margin="0,0,39.4,0"/>
+                        <TextBox x:Name="CName" Text="{Binding Path=Name}" TextAlignment="Left" Background="#FFA0D2EC"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Text="Race" Margin="0,0,46,0"/>
+                        <TextBox x:Name="Race" Text="{Binding Path=Race}" TextAlignment="Left" Background="#FFA0D2EC"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Text="Class" Margin="0,0,44,0"/>
+                        <TextBox x:Name="Class" Text="{Binding Path=Class}" TextAlignment="Left" Background="#FFA0D2EC"/>
+                    </DockPanel>
+                    <DockPanel MinHeight="40">
+                        <TextBlock Text="Alignment" Margin="0,0,15.99,0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="Alignment" Text="{Binding Path=Alignment}" TextAlignment="Left" Background="#FFA0D2EC"/>
+                    </DockPanel>
+                    <DockPanel MinHeight="40">
+                        <TextBlock Text="Background" Margin="0,0,7.6,0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="Background" Text="{Binding Path=Background}" TextAlignment="Left" Background="#FFA0D2EC"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Text="EXP" Margin="0,0,51,0"/>
+                        <TextBox x:Name="ExperiencePoints" Text="{Binding Path=EXP}" TextAlignment="Left" MinWidth="135" Background="#FFA0D2EC"/>
+                        <TextBlock Text="Hit Dice"  Margin="10,0,10,0"/>
+                        <TextBox x:Name="HitDice" Text="{Binding Path=HitDice}" TextAlignment="Left" MinWidth="100" Background="#FFA0D2EC"/>
+                    </DockPanel>
+                    <!--Saving Throws-->
+                    <StackPanel Margin="-110,20,0,0">
+                        <TextBlock Text="Death Saves" TextAlignment="Center" FontSize="15" FontWeight="Bold" Margin="-190,0,0,0"/>
+                        <DockPanel Margin="120,0,0,0">
+                            <TextBlock Text="Succes"/>
+                            <CheckBox DockPanel.Dock="left" x:Name="DSSucc1" IsChecked="{Binding Path=Ds_Success1}" Background="#FFCF6CE6"/>
+                            <CheckBox DockPanel.Dock="left" x:Name="DSSucc2" IsChecked="{Binding Path=Ds_Success2}" Background="#FFCF6CE6"/>
+                            <CheckBox DockPanel.Dock="left" x:Name="DSSucc3" IsChecked="{Binding Path=Ds_Success3}" Background="#FFCF6CE6"/>
+                        </DockPanel>
+                        <DockPanel Margin="120,0,0,0">
+                            <TextBlock Text="Fail" Margin="0,0,18,0"/>
+                            <CheckBox DockPanel.Dock="left" x:Name="DSFail1" IsChecked="{Binding Path=Ds_Fail1}" Background="#FFCF6CE6"/>
+                            <CheckBox DockPanel.Dock="left" x:Name="DSFail2" IsChecked="{Binding Path=Ds_Fail2}" Background="#FFCF6CE6"/>
+                            <CheckBox DockPanel.Dock="left" x:Name="DSFail3" IsChecked="{Binding Path=Ds_Fail3}" Background="#FFCF6CE6"/>
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Margin="200,50,0,0">
+                        <TextBlock Text="Player Name" TextAlignment="Center"/>
+                        <TextBox x:Name="PlayerName" Text="{Binding Path=PlayerName}" TextAlignment="Center" Background="#FFA0D2EC"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Attacks">
+                <ScrollViewer>
+                    <StackPanel>
+                        <Button x:Name="AttacksAddBut" Command="{Binding Path=AddAttackCMD}" Background="#FFCF6CE6">Add new entry</Button>
+                        <!--MainBoxes-->
+                        <DockPanel>
+                            <StackPanel MinWidth="109.5">
+                                <TextBlock TextAlignment="Center" Height="17.96">Name</TextBlock>
+                                <TextBlock TextAlignment="Center" Height="17.96">Range</TextBlock>
+                                <TextBlock TextAlignment="Center" Height="17.96">HitDC</TextBlock>
+                                <TextBlock TextAlignment="Center" Height="17.96">Damage</TextBlock>
+                                <TextBlock TextAlignment="Center" Height="17.96">Notes</TextBlock>
+                            </StackPanel>
+                            <StackPanel MinWidth="309.5">
+                                <TextBox x:Name="AttacksName" Text="{Binding Path=AttackCurrent_Name}" Background="#FFFEFFB4"></TextBox>
+                                <TextBox x:Name="AttacksRange" Text="{Binding Path=AttackCurrent_Range}" Background="#FFFEFFB4"></TextBox>
+                                <TextBox x:Name="AttacksHitDC" Text="{Binding Path=AttackCurrent_HitDC}" Background="#FFFEFFB4"></TextBox>
+                                <TextBox x:Name="AttacksDamage" Text="{Binding Path=AttackCurrent_Damage}" Background="#FFFEFFB4"></TextBox>
+                                <TextBox x:Name="AttacksNotes" Text="{Binding Path=AttackCurrent_Notes}" Background="#FFFEFFB4"></TextBox>
+                            </StackPanel>
+                        </DockPanel>
+                        <Button Command="{Binding Path=DelAttackCMD}">Delete Entry</Button>
+                        <ListView x:Name="AttacksList" Focusable="True" ItemsSource="{Binding Path=Attacks}" SelectedItem="{Binding Path=SelectedAttack}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" Width="80"/>
+                                    <GridViewColumn Header="Range" DisplayMemberBinding="{Binding Path=Range}" Width="80"/>
+                                    <GridViewColumn Header="HitDC" DisplayMemberBinding="{Binding Path=HitDC}" Width="80"/>
+                                    <GridViewColumn Header="Damage" DisplayMemberBinding="{Binding Path=Damage}" Width="80"/>
+                                    <GridViewColumn Header="Notes" DisplayMemberBinding="{Binding Path=Notes}" Width="80"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Spells">
+                <ScrollViewer>
+                    <StackPanel>
+                        <Button x:Name="SpellsAddBut" Command="{Binding Path=AddSpellCMD}" Background="#FFCF6CE6">Add new entry</Button>
+                        <!--MainBoxes-->
+                        <DockPanel>
+                            <StackPanel MinWidth="109.5">
+                                <TextBlock TextAlignment="Center" Height="17.96">Name</TextBlock>
+                                <TextBlock TextAlignment="Center" Height="17.96">Range</TextBlock>
+                                <TextBlock TextAlignment="Center" Height="17.96">HitDC</TextBlock>
+                                <TextBlock TextAlignment="Center" Height="17.96">Damage</TextBlock>
+                                <TextBlock TextAlignment="Center" Height="17.96">Notes</TextBlock>
+                                <TextBlock TextAlignment="Center" Height="17.96">Time</TextBlock>
+                                <TextBlock TextAlignment="Center" Height="17.96">Level</TextBlock>
+                            </StackPanel>
+                            <StackPanel MinWidth="309.5">
+                                <TextBox x:Name="SpellsName" Text="{Binding Path=SpellCurrent_Name}" Background="#FFFEFFB4"></TextBox>
+                                <TextBox x:Name="SpellsRange" Text="{Binding Path=SpellCurrent_Range}" Background="#FFFEFFB4"></TextBox>
+                                <TextBox x:Name="SpellsHitDC" Text="{Binding Path=SpellCurrent_HitDC}" Background="#FFFEFFB4"></TextBox>
+                                <TextBox x:Name="SpellsAttackDamage" Text="{Binding Path=SpellCurrent_Damage}" Background="#FFFEFFB4"></TextBox>
+                                <TextBox x:Name="SpellsNotes" Text="{Binding Path=SpellCurrent_Notes}" Background="#FFFEFFB4"></TextBox>
+                                <TextBox x:Name="SpellsTime" Text="{Binding Path=SpellCurrent_Time}" Background="#FFFEFFB4"></TextBox>
+                                <TextBox x:Name="SpellsLevel" Text="{Binding Path=SpellCurrent_Level}" Background="#FFFEFFB4"></TextBox>
+                            </StackPanel>
+                        </DockPanel>
+                        <Button Command="{Binding Path=DelSpellCMD}">Delete Entry</Button>
+                        <ListView x:Name="SpellsList" Focusable="True" ItemsSource="{Binding Path=Spells}" SelectedItem="{Binding Path=SelectedSpell}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" Width="80"/>
+                                    <GridViewColumn Header="Range" DisplayMemberBinding="{Binding Path=Range}" Width="80"/>
+                                    <GridViewColumn Header="HitDC" DisplayMemberBinding="{Binding Path=HitDC}" Width="80"/>
+                                    <GridViewColumn Header="Damage" DisplayMemberBinding="{Binding Path=Damage}" Width="80"/>
+                                    <GridViewColumn Header="Notes" DisplayMemberBinding="{Binding Path=Notes}" Width="80"/>
+                                    <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Path=Notes}" Width="80"/>
+                                    <GridViewColumn Header="Level" DisplayMemberBinding="{Binding Path=Notes}" Width="80"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+        <!--Proficiencies and languages-->
+        <StackPanel Grid.Row="5" Margin="0,5,0,0">
+            <TextBlock Text="Armor"/>
+            <TextBox x:Name="Armor" Text="{Binding Path=Armor}" MinHeight="20" MaxHeight="20" MaxWidth="188" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Background="#FFA0D2EC"/>
+            <TextBlock Text="Weapons"/>
+            <TextBox x:Name="Weapons" Text="{Binding Path=Weapons}" MinHeight="20" MaxHeight="20" MaxWidth="188"  VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Background="#FFA0D2EC"/>
+            <TextBlock Text="Tools"/>
+            <TextBox x:Name="Tools" Text="{Binding Path=Tools}" MinHeight="20" MaxHeight="20" MaxWidth="188"  VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Background="#FFA0D2EC"/>
+            <TextBlock Text="Languages"/>
+            <TextBox x:Name="Languages" Text="{Binding Path=Languages}" MinHeight="20" MaxHeight="20" MaxWidth="188" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Background="#FFA0D2EC"/>
+        </StackPanel>
+        <!--Initiative and Armor Class and Conditions-->
+        <DockPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" Margin="0,4,0,0">
+            <StackPanel MinWidth="70">
+                <TextBlock Text="Initiative" TextAlignment="Center"/>
+                <TextBox x:Name="Initiative" Text="{Binding Path=Initiative}" Background="#FFA0D2EC"/>
+            </StackPanel>
+            <StackPanel MinWidth="70">
+                <TextBlock Text="Armor Class" TextAlignment="Center"/>
+                <TextBox x:Name="ArmorClass" Text="{Binding Path=ArmorClass}" Background="#FFA0D2EC"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0" MinWidth="88">
+                <TextBlock>Defenses</TextBlock>
+                <TextBox x:Name="Defenses" Text="{Binding Path=Defenses}" MinHeight="25" TextWrapping="Wrap" MaxWidth="88" MaxHeight="25" HorizontalScrollBarVisibility="Auto" Background="#FFA0D2EC"/>
+            </StackPanel>
+            <StackPanel MinWidth="88">
+                <TextBlock>Conditions</TextBlock>
+                <TextBox x:Name="Conditions" Text="{Binding Path=Conditions}" MinHeight="25" TextWrapping="Wrap" MaxWidth="88" MaxHeight="25" HorizontalScrollBarVisibility="Auto" Background="#FFA0D2EC"/>
+            </StackPanel>
+            <StackPanel MinWidth="88">
+                <TextBlock>Advantages</TextBlock>
+                <TextBox x:Name="Advantages" Text="{Binding Path=Advantages}" MinHeight="25" TextWrapping="Wrap" MaxWidth="88" MaxHeight="25" HorizontalScrollBarVisibility="Auto" Background="#FFA0D2EC"/>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6">
+            <Button x:Name="SaveBut" Command="{Binding Path=SaveCMD}" MinWidth="400" Background="#FFBBA0EC">Save</Button>
+            <Button x:Name="LoadBut" Command="{Binding Path=LoadCMD}" MinWidth="400" Background="#FFBBA0EC">Load</Button>
+        </DockPanel>
+        <!--Dice Rolles-->
+        <StackPanel Grid.Row="3" MaxWidth="186" Margin="0,62,0,0" Grid.RowSpan="2">
+            <TextBlock TextAlignment="Center">Dice Roller</TextBlock>
+            <!--Input-->
+            <DockPanel>
+                <TextBlock>Amount of Dice</TextBlock>
+                <TextBox x:Name="DiceAmount" Background="#FFF5E38E"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock>Number to Roll</TextBlock>
+                <TextBox x:Name="DiceNumber" Background="#FFF5E38E"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock>Amount to Math</TextBlock>
+                <TextBox x:Name="DiceMathNum" Background="#FFF5E38E"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Button x:Name="diceplus" MinWidth="37" Click="diceplus_Click" Background="#FFA0D2EC">+</Button>
+                <Button x:Name="diceminus" MinWidth="37" Click="diceminus_Click" Background="#FFA0D2EC">-</Button>
+                <Button x:Name="dicedivide" MinWidth="37" Click="dicedivide_Click" Background="#FFA0D2EC">/</Button>
+                <Button x:Name="dicemultiply" MinWidth="37" Click="dicemultiply_Click" Background="#FFA0D2EC">*</Button>
+                <Button x:Name="diceequals" MinWidth="37" Click="diceequals_Click" Background="#FFA0D2EC">=</Button>
+            </DockPanel>
+            <ScrollViewer MaxHeight="100">
+                <StackPanel x:Name="diceErgebnisse">
+
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Window>
