@@ -1,13 +1,14 @@
-# DNDCharacterSheet_Public
-This Program Allows the User to create a Character Sheet with basic DND Rules applying.
-The Application will automaticly do the math for everything for you, you just need to enter your stats.
-You can also save the Program by Clicking save or Load a Sheet of another Person with Load
+DNDCharacterSheet_Public
 
-When u clik on the Numbers on Skill or Saving Throws it will automaticly do a saving throw for you.
-Most of the unnecessary character information is found in Character Informaton Tab
+This program allows the user to create a character sheet with basic DND rules applying.
+The application will automatically perform the calculations for everything; you just need to enter your stats.
+You can also save the program by clicking save or load a sheet of another person with Load.
 
-You can add Items to your Inventory and remove them, if u dont specify a Value it will be auto Filled for you
-Name : /
-Des : /
-Amount : 1
-Weight : 0
+When you click on the numbers on skills or saving throws, it will automatically perform a saving throw for you.
+Most of the unnecessary character information is found in the Character Information tab.
+
+You can add items to your inventory and remove them. If you don't specify a value, it will be autofilled for you.
+Name: /
+Description: /
+Amount: 1
+Weight: 0
